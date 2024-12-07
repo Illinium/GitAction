@@ -1,0 +1,32 @@
+name: GitHub Action test
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # trigger on push event
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest  # select operating system
+    steps:
+      # checkout - checking code
+      - name: Checkout code
+        uses: actions/checkout@v4
+      # install software
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: mvn compile
+
+      # Build project
+      - name: Build project
+        run: mvn package -DskipTests
+
+      # Run unit tests
+      - name: Run tests
+        run: mvn test
+      
