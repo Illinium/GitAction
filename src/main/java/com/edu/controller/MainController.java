@@ -19,3 +19,5 @@ public class MainController {
         return "index.html";
     }
 }
+
+// Adding commit to initiate code change and run new checks by Github Actions
